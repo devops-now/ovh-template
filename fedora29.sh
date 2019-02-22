@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dnf upgrade -y
-dnf install -y langpacks-fr policycoreutils-python-utils lvm2 ansible git
+dnf install -y langpacks-fr policycoreutils-python-utils lvm2
 
 # Enable root ssh
 sed -i 's/,command.*ssh-rsa/ ssh-rsa/' /root/.ssh/authorized_keys
@@ -34,8 +34,5 @@ touch /etc/cloud/cloud-init.disabled
 
 # Fix boot of mdmonitor
 sed -i '1i MAILADDR root' /etc/mdadm.conf
-
-# Import playbooks
-git clone https://github.com/devops-now/playbooks.git /root/playbooks
 
 exit 0
