@@ -8,6 +8,7 @@ sed -i 's/,command.*ssh-rsa/ ssh-rsa/' /root/.ssh/authorized_keys
 sed -i 's/#\?\s*Port\s\+.*/Port 225/' /etc/ssh/sshd_config
 
 semanage port -a -t ssh_port_t -p tcp 225
+systemctl restart sshd
 
 # Use LVM
 umount /home
