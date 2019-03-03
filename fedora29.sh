@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dnf upgrade -y
-dnf install -y langpacks-fr policycoreutils-python-utils lvm2 strip
+dnf install -y langpacks-fr policycoreutils-python-utils lvm2 binutils
 
 # Enable root ssh
 sed -i 's/,command.*ssh-rsa/ ssh-rsa/' /root/.ssh/authorized_keys
