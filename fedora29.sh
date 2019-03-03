@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dnf upgrade -y
-dnf install -y langpacks-fr policycoreutils-python-utils lvm2
+dnf install -y langpacks-fr policycoreutils-python-utils lvm2 strip
 
 # Enable root ssh
 sed -i 's/,command.*ssh-rsa/ ssh-rsa/' /root/.ssh/authorized_keys
@@ -20,8 +20,8 @@ mkfs.ext4 /dev/lvm/home
 sed -i 's/LABEL="\/home" \/home xfs/\/dev\/mapper\/lvm-home \/home ext4/' /etc/fstab
 
 # Fix boot LV on MDRaid
-rm /etc/dracut.conf.d/98-ovh.conf
-dracut -f
+rm -f /etc/dracut.conf.d/98-ovh.conf
+dracut --regenerate-all -f -q
 
 # Manage users
 userdel -r fedora
