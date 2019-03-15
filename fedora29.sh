@@ -4,7 +4,7 @@ dnf upgrade -y
 dnf install -y langpacks-fr policycoreutils-python-utils lvm2 binutils
 
 # Enable root ssh
-sed -i 's/,command.*ssh-rsa/ ssh-rsa/' /root/.ssh/authorized_keys
+sed -i 's/^.* ssh-rsa/ssh-rsa/' /root/.ssh/authorized_keys
 sed -i 's/#\?\s*Port\s\+.*/Port 225/' /etc/ssh/sshd_config
 
 semanage port -a -t ssh_port_t -p tcp 225
